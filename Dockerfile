@@ -29,7 +29,7 @@ RUN \
     && pecl install redis \
     && pecl install xdebug-2.7.0beta1 \
     && docker-php-ext-enable yaml redis xdebug \
-    && docker-php-ext-enable phalcon --ini-name z-docker-php-ext-phalcon.ini
+    && docker-php-ext-enable phalcon --ini-name z-docker-php-ext-phalcon.ini \
     && apk del build-dependencies \
     && rm -rf cphalcon-4.0.0-alpha1 \
         v4.0.0-alpha1 \
