@@ -5,8 +5,6 @@
 # Pull base image
 FROM php:7.3-fpm-alpine
 
-ARG PHALCON_VERSION
-
 MAINTAINER Ruud Boon <ruud@ruudboon.io>
 
 RUN docker-php-ext-install pdo_mysql
@@ -22,22 +20,21 @@ RUN \
         make \  
     && pecl install psr \  
     && docker-php-ext-enable psr \ 
-    && curl -sS -o /tmp/phalcon.tar.gz https://codeload.github.com/phalcon/cphalcon/tar.gz/v$PHALCON_VERSION \
+    && curl -sS -o /tmp/phalcon.tar.gz https://codeload.github.com/phalcon/cphalcon/tar.gz/v4.0.0-alpha1 \
     && cd /tmp/ \
     && tar xvzf phalcon.tar.gz \
-    && cd cphalcon-$PHALCON_VERSION/build \
+    && cd cphalcon-v4.0.0-alpha1/build \
     && sh install \
     && pecl install yaml \
     && pecl install redis \
     && pecl install xdebug-2.7.0beta1 \
     && docker-php-ext-enable yaml redis xdebug \
     && apk del build-dependencies \
-    && rm -rf cphalcon-$PHALCON_VERSION \
-        v$PHALCON_VERSION \
+    && rm -rf cphalcon-v4.0.0-alpha1 \
+        v4.0.0-alpha1 \
         /var/cache/apk/* \
         /tmp/* \
-        /var/tmp/* \
-    && unset PHALCON_VERSION
+        /var/tmp/*
 
 RUN curl -LsS https://codeception.com/codecept.phar -o /usr/local/bin/codecept
 RUN chmod a+x /usr/local/bin/codecept
