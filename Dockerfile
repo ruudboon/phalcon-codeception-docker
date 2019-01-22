@@ -23,14 +23,14 @@ RUN \
     && curl -sS -o /tmp/phalcon.tar.gz https://codeload.github.com/phalcon/cphalcon/tar.gz/v4.0.0-alpha1 \
     && cd /tmp/ \
     && tar xvzf phalcon.tar.gz \
-    && cd cphalcon-v4.0.0-alpha1/build \
+    && cd cphalcon-4.0.0-alpha1/build \
     && sh install \
     && pecl install yaml \
     && pecl install redis \
     && pecl install xdebug-2.7.0beta1 \
     && docker-php-ext-enable yaml redis xdebug \
     && apk del build-dependencies \
-    && rm -rf cphalcon-v4.0.0-alpha1 \
+    && rm -rf cphalcon-4.0.0-alpha1 \
         v4.0.0-alpha1 \
         /var/cache/apk/* \
         /tmp/* \
