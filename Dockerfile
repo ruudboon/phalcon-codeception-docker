@@ -8,7 +8,7 @@ FROM php:7.3-fpm-alpine
 MAINTAINER Ruud Boon <ruud@ruudboon.io>
 
 RUN docker-php-ext-install pdo_mysql
-RUN apk --update add bash yaml-dev fcgi composer gettext-dev libpng-dev
+RUN apk --update add bash yaml-dev fcgi composer gettext-dev libpng-dev postgresql-dev
 
 RUN \
     apk add --virtual build-dependencies \
@@ -34,6 +34,8 @@ RUN \
     && docker-php-ext-enable gettext \
     && docker-php-ext-install gd \
     && docker-php-ext-enable gd \
+    && docker-php-ext-install pdo_pgsql \
+    && docker-php-ext-enable pdo_pgsql \
     && apk del build-dependencies \
     && rm -rf cphalcon-4.0.0-alpha1 \
         v4.0.0-alpha1 \
