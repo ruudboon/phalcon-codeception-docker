@@ -8,7 +8,7 @@ FROM php:7.3-fpm-alpine
 MAINTAINER Ruud Boon <ruud@ruudboon.io>
 
 RUN docker-php-ext-install pdo_mysql
-RUN apk --update add bash yaml-dev fcgi composer
+RUN apk --update add bash yaml-dev fcgi composer gettext-dev libpng-dev
 
 RUN \
     apk add --virtual build-dependencies \
@@ -25,11 +25,15 @@ RUN \
     && tar xvzf phalcon.tar.gz \
     && cd cphalcon-4.0.0-alpha1/build \
     && sh install \
+    && docker-php-ext-enable phalcon --ini-name z-docker-php-ext-phalcon.ini \
     && pecl install yaml \
     && pecl install redis \
     && pecl install xdebug-2.7.0beta1 \
     && docker-php-ext-enable yaml redis xdebug \
-    && docker-php-ext-enable phalcon --ini-name z-docker-php-ext-phalcon.ini \
+    && docker-php-ext-install gettext \
+    && docker-php-ext-enable gettext \
+    && docker-php-ext-install gd \
+    && docker-php-ext-enable gd \
     && apk del build-dependencies \
     && rm -rf cphalcon-4.0.0-alpha1 \
         v4.0.0-alpha1 \
