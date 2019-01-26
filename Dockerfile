@@ -21,7 +21,7 @@ RUN \
     && pecl install psr \  
     && docker-php-ext-enable psr \ 
     && curl -sS -o /tmp/phalcon.tar.gz  \
-    && cd /tmp/ \https://codeload.github.com/phalcon/cphalcon/tar.gz/4.0.x
+    && cd /tmp/ \https://codeload.github.com/phalcon/cphalcon/tar.gz/4.0.x \
     && tar xvzf phalcon.tar.gz \
     && cd cphalcon-4.0.x/build \
     && sh install \
